@@ -20,13 +20,26 @@
             color: #fff;
             font-family: Arial, sans-serif;
             min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1;
         }
 
         .text-container {
+            position: relative;
             width: 100%;
             padding: 2rem;
             font-size: var(--text-size);
             font-weight: bold;
+            z-index: 2;
         }
 
         .line {
@@ -44,6 +57,9 @@
 
         .text-start, .text-end {
             white-space: nowrap;
+            background: #000;
+            position: relative;
+            z-index: 2;
         }
 
         .video-window {
@@ -51,17 +67,6 @@
             flex: 1;
             height: 1em;
             margin: 0 0.5em;
-            overflow: hidden;
-        }
-
-        .video-window video {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
         }
 
         @media (max-width: 768px) {
@@ -86,48 +91,36 @@
     </style>
 </head>
 <body>
+    <video class="background-video" autoplay muted loop playsinline>
+        <source src="video/background.mp4" type="video/mp4">
+    </video>
+
     <div class="text-container">
         <div class="line">
             <div class="text-segment">
                 <span class="text-start">We're here</span>
-                <div class="video-window">
-                    <video autoplay muted loop playsinline>
-                        <source src="video/background.mp4" type="video/mp4">
-                    </video>
-                </div>
+                <div class="video-window"></div>
                 <span class="text-end">to make</span>
             </div>
         </div>
         <div class="line">
             <div class="text-segment">
                 <span class="text-start">healthy</span>
-                <div class="video-window">
-                    <video autoplay muted loop playsinline>
-                        <source src="video/background.mp4" type="video/mp4">
-                    </video>
-                </div>
+                <div class="video-window"></div>
                 <span class="text-end">living effortless</span>
             </div>
         </div>
         <div class="line">
             <div class="text-segment">
                 <span class="text-start">so you can</span>
-                <div class="video-window">
-                    <video autoplay muted loop playsinline>
-                        <source src="video/background.mp4" type="video/mp4">
-                    </video>
-                </div>
+                <div class="video-window"></div>
                 <span class="text-end">live longer</span>
             </div>
         </div>
         <div class="line">
             <div class="text-segment">
                 <span class="text-start">and happier</span>
-                <div class="video-window">
-                    <video autoplay muted loop playsinline>
-                        <source src="video/background.mp4" type="video/mp4">
-                    </video>
-                </div>
+                <div class="video-window"></div>
             </div>
         </div>
     </div>
