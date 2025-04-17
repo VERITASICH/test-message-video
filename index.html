@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Text Integration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --text-size: min(4rem, 8vw);
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .text-container {
+            width: 100%;
+            padding: 2rem;
+            font-size: var(--text-size);
+            font-weight: bold;
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+
+        .text-segment {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .text-start, .text-end {
+            white-space: nowrap;
+        }
+
+        .video-window {
+            position: relative;
+            flex: 1;
+            height: 1em;
+            margin: 0 0.5em;
+            overflow: hidden;
+        }
+
+        .video-window video {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 768px) {
+            .text-container {
+                font-size: calc(var(--text-size) * 0.8);
+                padding: 1.5rem;
+            }
+            .video-window {
+                margin: 0 0.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-container {
+                font-size: calc(var(--text-size) * 0.6);
+                padding: 1rem;
+            }
+            .video-window {
+                margin: 0 0.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="text-container">
+        <div class="line">
+            <div class="text-segment">
+                <span class="text-start">We're here</span>
+                <div class="video-window">
+                    <video autoplay muted loop playsinline>
+                        <source src="video/background.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <span class="text-end">to make</span>
+            </div>
+        </div>
+        <div class="line">
+            <div class="text-segment">
+                <span class="text-start">healthy</span>
+                <div class="video-window">
+                    <video autoplay muted loop playsinline>
+                        <source src="video/background.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <span class="text-end">living effortless</span>
+            </div>
+        </div>
+        <div class="line">
+            <div class="text-segment">
+                <span class="text-start">so you can</span>
+                <div class="video-window">
+                    <video autoplay muted loop playsinline>
+                        <source src="video/background.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <span class="text-end">live longer</span>
+            </div>
+        </div>
+        <div class="line">
+            <div class="text-segment">
+                <span class="text-start">and happier</span>
+                <div class="video-window">
+                    <video autoplay muted loop playsinline>
+                        <source src="video/background.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            
+            // Ensure all videos play and stay synchronized
+            videos.forEach(video => {
+                video.play().catch(function(error) {
+                    console.log("Video autoplay failed:", error);
+                });
+            });
+
+            // Function to sync all videos with the first one
+            function syncVideos() {
+                const mainVideo = videos[0];
+                videos.forEach((video, index) => {
+                    if (index > 0) {
+                        video.currentTime = mainVideo.currentTime;
+                    }
+                });
+            }
+
+            // Sync videos periodically
+            setInterval(syncVideos, 1000);
+        });
+    </script>
+</body>
+</html>
